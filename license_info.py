@@ -5,7 +5,8 @@ import sys
 import shelve
 import tempfile
 
-from pip import get_installed_distributions
+# from pip import get_installed_distributions
+import pkg_resources
 from pkgtools.pypi import PyPIXmlRpc
 try:
     import termcolor
@@ -154,7 +155,8 @@ def read_cache():
 def main():
     cache = read_cache()
 
-    for dist in get_installed_distributions():
+    # for dist in get_installed_distributions():
+    for dist in pkg_resources.working_set:
         display_dist(dist, cache=cache)
 
     write_cache(cache)
